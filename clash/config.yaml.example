@@ -1,0 +1,22 @@
+# vim:foldmethod=marker
+mixed-port: 7890
+tproxy-port: 7893
+ipv6: false
+allow-lan: true
+bind-address: '0.0.0.0'
+mode: rule
+log-level: warning
+external-controller: 0.0.0.0:9090
+external-ui: /ui
+secret: ""
+#{{{ dns
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:53
+  enhanced-mode: redir-host       # redir-host or fake-ip
+  # fake-ip-range: 198.18.0.1/16    # Fake IP addresses pool CIDR
+  use-hosts: true                 # lookup hosts and return IP record
+  nameserver:
+    - 127.0.0.1:55
+# }}}

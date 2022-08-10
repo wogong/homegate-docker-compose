@@ -1,0 +1,30 @@
+# docker-compose.yml
+version: '3'
+
+services:
+  clash:
+    image: dreamacro/clash-premium
+    container_name: clash
+    restart: always
+    volumes:
+      - ./clash/config.yaml:/root/.config/clash/config.yaml
+      - ./clash/dashboard:/ui
+    network_mode: host
+  adguardhome:
+    image: adguard/adguardhome:latest
+    container_name: adguardhome
+    restart: always
+    environment:
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - ./adguardhome/work:/opt/adguardhome/work
+      - ./adguardhome/conf:/opt/adguardhome/conf
+    network_mode: host
+  smartdns:
+    image: ghostry/smartdns:latest
+    container_name: smartdns
+    restart: always
+    volumes:
+      - ./smartdns/smartdns.conf:/smartdns/smartdns.conf
+    network_mode: host
